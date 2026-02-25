@@ -1,5 +1,5 @@
 
-namespace BookWorm.WebApi
+namespace BookWorm.WebAPI
 {
     public class Program
     {

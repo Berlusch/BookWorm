@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookWorm.Model.Common
+﻿namespace BookWorm.Model.Common
 {
-    internal interface IAuthor
+    public interface IAuthor : IEntityBase
     {
+        string FullName { get; set; }
+        int? BirthYear { get; set; }
+        int? DeathYear { get; set; }
+        string Biography { get; set; }
+        string NationalLiterature { get; set; }
+        
     }
 }

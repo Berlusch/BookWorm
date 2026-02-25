@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookWorm.Model.Common
+﻿namespace BookWorm.Model.Common
 {
-    internal interface IBookTitle
+    public interface IBookTitle
     {
+        string Title { get; }              
+        string? Subtitle { get; }          
+        string AuthorName { get; set; }    
+        string LanguageName { get; set; }  
+        string TagLineText { get; set; }   
     }
 }

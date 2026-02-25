@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookWorm.Model.Common;
 
 namespace BookWorm.Model
 {
-    internal class Genre
+    public class Genre : EntityBase, IGenre
     {
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
+
+        // EF Core navigation M:N with BookTitle
+        public ICollection<BookTitle> BookTitles { get; set; } = new List<BookTitle>();
     }
 }

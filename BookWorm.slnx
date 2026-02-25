@@ -1,1 +1,14 @@
-<Solution />
+<Solution>
+  <Project Path="BookWorm.Common/BookWorm.Common.csproj" />
+  <Project Path="BookWorm.DAL/BookWorm.DAL.csproj" />
+  <Project Path="BookWorm.Model.Common/BookWorm.Model.Common.csproj" />
+  <Project Path="BookWorm.Model/BookWorm.Model.csproj" />
+  <Project Path="BookWorm.Repository.Common/BookWorm.Repository.Common.csproj" />
+  <Project Path="BookWorm.Repository.Tests/BookWorm.Repository.Tests.csproj" />
+  <Project Path="BookWorm.Repository/BookWorm.Repository.csproj" />
+  <Project Path="BookWorm.Service.Common/BookWorm.Service.Common.csproj" />
+  <Project Path="BookWorm.Service.Tests/BookWorm.Service.Tests.csproj" />
+  <Project Path="BookWorm.Service/BookWorm.Service.csproj" />
+  <Project Path="BookWorm.WebAPI.Tests/BookWorm.WebAPI.Tests.csproj" />
+  <Project Path="BookWorm.WebApi/BookWorm.WebAPI.csproj" />
+</Solution>
