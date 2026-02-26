@@ -11,11 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookWorm.DAL\BookWorm.DAL.csproj" />
     <ProjectReference Include="..\BookWorm.Service.Common\BookWorm.Service.Common.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
