@@ -4,7 +4,8 @@ namespace BookWorm.Model
 {
     public class Author : EntityBase, IAuthor
     {
-        public string FullName { get; set; } = null!;
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
         public int? BirthYear { get; set; }
         public int? DeathYear { get; set; }
         public string Biography { get; set; } = null!;
