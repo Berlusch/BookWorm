@@ -3,7 +3,7 @@
 {
     public static class ServiceCollectionCorsExtensions
     {
-        public static void AddCarsProjectCORS(this IServiceCollection services)
+        public static void AddBookWormCORS(this IServiceCollection services)
         {
             services.AddCors(options =>
             {
