@@ -1,4 +1,5 @@
 using BookWorm.DAL;
+using BookWorm.WebAPI.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -21,13 +22,14 @@ namespace BookWorm.WebAPI
             builder.Services.AddDbContext<BookWormDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            // CORS
+            builder.Services.AddBookWormCORS();
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
@@ -35,8 +37,14 @@ namespace BookWorm.WebAPI
             }
 
             app.UseHttpsRedirection();
+
+            
+            app.UseCors("AllowViteDev");
+
             app.UseAuthorization();
+
             app.MapControllers();
+
             app.Run();
         }
     }
