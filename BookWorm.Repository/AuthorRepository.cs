@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bookworm.Repository.Common;
+using BookWorm.DAL;
+using BookWorm.Model;
+using Microsoft.EntityFrameworkCore;
 
-namespace BookWorm.Repository
+namespace Bookworm.Repository
 {
-    internal class AuthorRepository
+    public class AuthorRepository(BookWormDbContext context) : GenericRepository<Author>(context), IAuthorRepository
     {
+        public async Task<Author?> GetByFullNameAsync(string fullName)
+        {
+            return await _dbSet
+                .FirstOrDefaultAsync(a => a.FullName == fullName);
+        }
+
     }
 }
