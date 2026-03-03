@@ -47,12 +47,19 @@ namespace BookWorm.DAL
                     j => j.HasKey("BookTitleId", "GenreId")
                 );
 
-            //Configurations for properties
+            // Configurations for properties
             modelBuilder.Entity<BookTitle>().Property(b => b.Title).IsRequired().HasMaxLength(200);
-            modelBuilder.Entity<Author>().Property(a => a.FullName).IsRequired().HasMaxLength(150);
+            modelBuilder.Entity<Author>().Property(a => a.FirstName).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<Author>().Property(a => a.LastName).IsRequired().HasMaxLength(100);
+            modelBuilder.Entity<Author>().Property(a => a.Biography).IsRequired();
+            modelBuilder.Entity<Author>().Property(a => a.NationalLiterature).IsRequired();
             modelBuilder.Entity<TagLine>().Property(t => t.Text).IsRequired().HasMaxLength(250);
             modelBuilder.Entity<Genre>().Property(g => g.Name).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Language>().Property(l => l.Name).IsRequired().HasMaxLength(50);
+
+            
+            modelBuilder.Entity<Author>()
+                .Ignore(a => a.FullName);
         }
     }
 }
