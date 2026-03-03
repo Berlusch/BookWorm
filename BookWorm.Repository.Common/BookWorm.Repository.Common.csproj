@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BookWorm.Common\BookWorm.Common.csproj" />
+    <ProjectReference Include="..\BookWorm.Model\BookWorm.Model.csproj" />
+  </ItemGroup>
+
 </Project>

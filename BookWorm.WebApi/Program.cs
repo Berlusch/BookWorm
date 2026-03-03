@@ -1,5 +1,6 @@
 using BookWorm.DAL;
 using BookWorm.WebAPI.Extensions;
+using BookWorm.WebAPI.Mapping;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -18,7 +19,7 @@ namespace BookWorm.WebAPI
                     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
                     options.JsonSerializerOptions.WriteIndented = true;
                 });
-
+            builder.Services.AddAutoMapper(typeof(BookWormMappingProfile));
             builder.Services.AddDbContext<BookWormDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

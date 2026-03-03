@@ -1,6 +1,14 @@
-﻿namespace BookWorm.WebAPI.DTO
+﻿namespace BookWorm.WebApi.DTO
 {
     public class AuthorReadDto
     {
+        public int Id { get; set; }                  
+        public string FirstName { get; set; } = null!;
+        public string LastName { get; set; } = null!;
+        public string FullName { get; set; } = null!;
+        public int? BirthYear { get; set; }
+        public int? DeathYear { get; set; }
+        public string Biography { get; set; } = null!;
+        public string NationalLiterature { get; set; } = null!;
     }
 }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookWorm.Common\BookWorm.Common.csproj" />
     <ProjectReference Include="..\BookWorm.DAL\BookWorm.DAL.csproj" />
     <ProjectReference Include="..\BookWorm.Model\BookWorm.Model.csproj" />
     <ProjectReference Include="..\BookWorm.Repository.Common\BookWorm.Repository.Common.csproj" />
