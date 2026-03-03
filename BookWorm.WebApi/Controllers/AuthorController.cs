@@ -19,13 +19,12 @@ namespace BookWorm.WebAPI.Controllers
             _authorService = authorService;
             _mapper = mapper;
         }
-        
+                
         [HttpGet]
         public async Task<ActionResult<PagedResult<AuthorReadDto>>> GetAuthors([FromQuery] PFSParameters pfs)
         {
             var pagedAuthors = await _authorService.GetAuthorsAsync(pfs);
 
-            // Mapiranje Author → AuthorReadDto
             var dto = new PagedResult<AuthorReadDto>
             {
                 Items = pagedAuthors.Items.Select(a => _mapper.Map<AuthorReadDto>(a)).ToList(),
@@ -46,7 +45,7 @@ namespace BookWorm.WebAPI.Controllers
             var dto = _mapper.Map<AuthorReadDto>(author);
             return Ok(dto);
         }
-                
+        
         [HttpPost]
         public async Task<ActionResult<AuthorReadDto>> AddAuthor([FromBody] AuthorInsertUpdateDto dto)
         {
@@ -56,12 +55,15 @@ namespace BookWorm.WebAPI.Controllers
             var readDto = _mapper.Map<AuthorReadDto>(added);
             return CreatedAtAction(nameof(GetAuthorById), new { id = readDto.Id }, readDto);
         }
-       
+        
         [HttpPut("{id}")]
         public async Task<ActionResult<AuthorReadDto>> UpdateAuthor(int id, [FromBody] AuthorInsertUpdateDto dto)
         {
             var author = _mapper.Map<Author>(dto);
             var updated = await _authorService.UpdateAuthorAsync(id, author);
+
+            if (updated == null)
+                return NotFound();
 
             var readDto = _mapper.Map<AuthorReadDto>(updated);
             return Ok(readDto);
@@ -70,8 +72,8 @@ namespace BookWorm.WebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAuthor(int id)
         {
-            var result = await _authorService.DeleteAuthorAsync(id);
-            if (!result)
+            var deleted = await _authorService.DeleteAuthorAsync(id);
+            if (!deleted)
                 return NotFound();
 
             return NoContent();
