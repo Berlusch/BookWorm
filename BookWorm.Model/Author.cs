@@ -6,6 +6,7 @@ namespace BookWorm.Model
     {
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
+        public string FullName => $"{FirstName} {LastName}";
         public int? BirthYear { get; set; }
         public int? DeathYear { get; set; }
         public string Biography { get; set; } = null!;
