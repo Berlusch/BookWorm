@@ -1,4 +1,8 @@
+using Bookworm.Repository;
+using Bookworm.Repository.Common;
 using BookWorm.DAL;
+using BookWorm.Service;
+using BookWorm.Service.Common;
 using BookWorm.WebAPI.Extensions;
 using BookWorm.WebAPI.Mapping;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +24,13 @@ namespace BookWorm.WebAPI
                     options.JsonSerializerOptions.WriteIndented = true;
                 });
             builder.Services.AddAutoMapper(typeof(BookWormMappingProfile));
+
+            builder.Services.AddScoped<IAuthorService, AuthorService>();           
+
+           
+            builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+
+
             builder.Services.AddDbContext<BookWormDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
