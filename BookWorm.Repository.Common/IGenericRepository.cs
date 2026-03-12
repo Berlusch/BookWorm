@@ -1,4 +1,5 @@
 ﻿using BookWorm.Common;
+
 namespace BookWorm.Repository.Common
 {
     public interface IGenericRepository<T> where T : class

@@ -1,8 +1,8 @@
 ﻿using Bookworm.Repository.Common;
 using BookWorm.Common;
-using BookWorm.Model;
 using BookWorm.Service.Common;
 using Microsoft.EntityFrameworkCore;
+
 namespace BookWorm.Service
 {
     public class BookTitleService : IBookTitleService

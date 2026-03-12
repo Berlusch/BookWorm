@@ -1,5 +1,5 @@
-﻿using BookWorm.Model;
-using BookWorm.Repository.Common;
+﻿using BookWorm.Repository.Common;
+
 namespace Bookworm.Repository.Common
 {
     public interface IBookTitleRepository : IGenericRepository<BookTitle>

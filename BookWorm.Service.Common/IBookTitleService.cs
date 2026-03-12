@@ -1,5 +1,5 @@
 ﻿using BookWorm.Common;
-using BookWorm.Model;
+
 namespace BookWorm.Service.Common
 {
     public interface IBookTitleService
