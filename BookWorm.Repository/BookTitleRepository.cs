@@ -11,7 +11,7 @@ namespace Bookworm.Repository
             return await _dbSet
                 .Include(b => b.Author)
                 .Include(b => b.Language)
-                .Include(b => b.TagLine)
+                .Include(b => b.BookQuotes)
                 .Include(b => b.Genres)
                 .FirstOrDefaultAsync(b => b.Id == id);
         }

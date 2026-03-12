@@ -7,7 +7,7 @@
         public string? Subtitle { get; set; }
         public string AuthorName { get; set; } = null!;
         public string LanguageName { get; set; } = null!;
-        public string TagLineText { get; set; } = null!;
+        public List<string> BookQuotes { get; set; } = new();
         public List<string> Genres { get; set; } = new();
     }
 }

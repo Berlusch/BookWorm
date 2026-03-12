@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookWorm.Repository.Common
 {
-    internal interface ITagLineRepository
+    internal interface IBookQuoteRepository
     {
     }
 }

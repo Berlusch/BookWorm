@@ -8,18 +8,18 @@ namespace BookWorm.DAL
         public DbSet<BookTitle> BookTitles { get; set; } = null!;
         public DbSet<Author> Authors { get; set; } = null!;
         public DbSet<Genre> Genres { get; set; } = null!;
-        public DbSet<TagLine> TagLines { get; set; } = null!;
+        public DbSet<BookQuote> BookQuotes { get; set; } = null!;
         public DbSet<Language> Languages { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // 1:1 BookTitle → TagLine
+            // 1:N BookTitle → BookQuote
             modelBuilder.Entity<BookTitle>()
-                .HasOne(b => b.TagLine)
+                .HasMany(b => b.BookQuotes)
                 .WithOne(t => t.BookTitle)
-                .HasForeignKey<TagLine>(t => t.BookTitleId)
+                .HasForeignKey(t => t.BookTitleId)
                 .IsRequired();
 
             // 1:N BookTitle → Author
@@ -53,7 +53,7 @@ namespace BookWorm.DAL
             modelBuilder.Entity<Author>().Property(a => a.LastName).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Author>().Property(a => a.Biography).IsRequired();
             modelBuilder.Entity<Author>().Property(a => a.NationalLiterature).IsRequired();
-            modelBuilder.Entity<TagLine>().Property(t => t.Text).IsRequired().HasMaxLength(250);
+            modelBuilder.Entity<BookQuote>().Property(t => t.Text).IsRequired().HasMaxLength(250);
             modelBuilder.Entity<Genre>().Property(g => g.Name).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Language>().Property(l => l.Name).IsRequired().HasMaxLength(50);
             modelBuilder.Entity<Language>().HasData(

@@ -11,10 +11,9 @@ public class BookTitle : EntityBase, IBookTitle
     public int LanguageId { get; set; }
     public Language Language { get; set; } = null!;
 
-    public TagLine TagLine { get; set; } = null!;
+    public ICollection<BookQuote> BookQuotes { get; set; } = new List<BookQuote>();
     public ICollection<Genre> Genres { get; set; } = new List<Genre>();
         
     string IBookTitle.AuthorName => Author.FullName;
-    string IBookTitle.LanguageName => Language.Name;
-    string IBookTitle.TagLineText => TagLine.Text;
+    string IBookTitle.LanguageName => Language.Name;    
 }

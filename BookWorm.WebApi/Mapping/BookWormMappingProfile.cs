@@ -21,11 +21,10 @@
             CreateMap<GenreInsertUpdateDto, Genre>();
 
             CreateMap<BookTitle, BookTitleReadDto>()
-                .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.FullName))
-                .ForMember(dest => dest.LanguageName, opt => opt.MapFrom(src => src.Language.Name))
-                .ForMember(dest => dest.TagLineText, opt => opt.MapFrom(src => src.TagLine.Text))
-                .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.Genres.Select(g => g.Name).ToList()));
-
+                    .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.FullName))
+                    .ForMember(dest => dest.LanguageName, opt => opt.MapFrom(src => src.Language.Name))
+                    .ForMember(dest => dest.BookQuotes, opt => opt.MapFrom(src => src.BookQuotes.Select(q => q.Text).ToList()))
+                    .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.Genres.Select(g => g.Name).ToList()));
             CreateMap<BookTitleInsertUpdateDto, BookTitle>();
         }
     }

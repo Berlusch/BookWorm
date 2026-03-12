@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookWorm.Service
 {
-    internal class TagLineService
+    internal class BookQuoteService
     {
     }
 }

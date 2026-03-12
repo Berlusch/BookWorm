@@ -1,6 +1,6 @@
 ﻿namespace BookWorm.WebAPI.DTO
 {
-    public class TagLineReadDto
+    public class BookQuoteInsertUpdateDto
     {
     }
 }

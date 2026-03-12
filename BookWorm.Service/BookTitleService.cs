@@ -19,7 +19,7 @@ namespace BookWorm.Service
             var query = _bookTitleRepository.GetQuery(paging, sorting, filter)
                 .Include(b => b.Author)
                 .Include(b => b.Language)
-                .Include(b => b.TagLine)
+                .Include(b => b.BookQuotes)
                 .Include(b => b.Genres);
             var totalCount = await query.CountAsync();
             var items = await query

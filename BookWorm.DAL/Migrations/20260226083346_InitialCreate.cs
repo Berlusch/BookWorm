@@ -107,7 +107,7 @@ namespace BookWorm.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TagLines",
+                name: "BookQuotes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -117,9 +117,9 @@ namespace BookWorm.DAL.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TagLines", x => x.Id);
+                    table.PrimaryKey("PK_BookQuotes", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_TagLines_BookTitles_BookTitleId",
+                        name: "FK_BookQuotes_BookTitles_BookTitleId",
                         column: x => x.BookTitleId,
                         principalTable: "BookTitles",
                         principalColumn: "Id",
@@ -142,8 +142,8 @@ namespace BookWorm.DAL.Migrations
                 column: "LanguageId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TagLines_BookTitleId",
-                table: "TagLines",
+                name: "IX_BookQuotes_BookTitleId",
+                table: "BookQuotes",
                 column: "BookTitleId",
                 unique: true);
         }
@@ -155,7 +155,7 @@ namespace BookWorm.DAL.Migrations
                 name: "BookTitleGenre");
 
             migrationBuilder.DropTable(
-                name: "TagLines");
+                name: "BookQuotes");
 
             migrationBuilder.DropTable(
                 name: "Genres");

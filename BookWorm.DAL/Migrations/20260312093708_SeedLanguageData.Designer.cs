@@ -185,7 +185,7 @@ namespace BookWorm.DAL.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BookWorm.Model.TagLine", b =>
+            modelBuilder.Entity("BookWorm.Model.BookQuote", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -206,7 +206,7 @@ namespace BookWorm.DAL.Migrations
                     b.HasIndex("BookTitleId")
                         .IsUnique();
 
-                    b.ToTable("TagLines");
+                    b.ToTable("BookQuotes");
                 });
 
             modelBuilder.Entity("BookTitle", b =>
@@ -243,11 +243,11 @@ namespace BookWorm.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BookWorm.Model.TagLine", b =>
+            modelBuilder.Entity("BookWorm.Model.BookQuote", b =>
                 {
                     b.HasOne("BookTitle", "BookTitle")
-                        .WithOne("TagLine")
-                        .HasForeignKey("BookWorm.Model.TagLine", "BookTitleId")
+                        .WithOne("BookQuote")
+                        .HasForeignKey("BookWorm.Model.BookQuote", "BookTitleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -256,7 +256,7 @@ namespace BookWorm.DAL.Migrations
 
             modelBuilder.Entity("BookTitle", b =>
                 {
-                    b.Navigation("TagLine")
+                    b.Navigation("BookQuote")
                         .IsRequired();
                 });
 

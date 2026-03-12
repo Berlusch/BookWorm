@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookWorm.Repository
 {
-    internal class TagLineRepository
+    internal class BookQuoteRepository
     {
     }
 }

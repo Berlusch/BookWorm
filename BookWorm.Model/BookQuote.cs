@@ -2,7 +2,7 @@
 
 namespace BookWorm.Model
 {
-    public class TagLine : EntityBase, ITagLine
+    public class BookQuote : EntityBase, IBookQuote
     {
         public string Text { get; set; } = null!;
 
