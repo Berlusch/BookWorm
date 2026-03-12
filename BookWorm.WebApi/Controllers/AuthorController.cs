@@ -28,9 +28,11 @@ namespace BookWorm.WebAPI.Controllers
             [FromQuery] string filterProperty = "",
             [FromQuery] string filter = "")
         {
-            var pfs = PFSParametersFactory.Create(pageNumber, pageSize, orderBy, descending, filterProperty, filter);
+            var paging = PagingParametersFactory.Create(pageNumber, pageSize);
+            var sorting = SortingParametersFactory.Create(orderBy, descending);
+            var filterParams = FilterParametersFactory.Create(filterProperty, filter);
 
-            var pagedAuthors = await _authorService.GetAuthorsAsync(pfs);
+            var pagedAuthors = await _authorService.GetAuthorsAsync(paging, sorting, filterParams);
             var dto = new PagedResult<AuthorReadDto>
             {
                 Items = pagedAuthors.Items.Select(a => _mapper.Map<AuthorReadDto>(a)).ToList(),
