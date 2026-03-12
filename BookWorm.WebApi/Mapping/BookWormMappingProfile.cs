@@ -10,12 +10,11 @@
     {
         public BookWormMappingProfile()
         {
-            
-            CreateMap<Author, AuthorReadDto>()
-                .ForMember(dest => dest.FullName, opt => opt.MapFrom(src => src.FullName));
-                        
+
+            CreateMap<Author, AuthorReadDto>();
+
             CreateMap<AuthorInsertUpdateDto, Author>();
-           
+
             CreateMap<Author, AuthorInsertUpdateDto>();
         }
     }
