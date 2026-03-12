@@ -1,12 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bookworm.Repository.Common;
+using BookWorm.DAL;
+using Microsoft.EntityFrameworkCore;
 
-namespace BookWorm.Repository
+namespace Bookworm.Repository
 {
-    internal class BookTitleRepository
+    public class BookTitleRepository(BookWormDbContext context) : GenericRepository<BookTitle>(context), IBookTitleRepository
     {
+        public async Task<BookTitle?> GetByIdWithDetailsAsync(int id)
+        {
+            return await _dbSet
+                .Include(b => b.Author)
+                .Include(b => b.Language)
+                .Include(b => b.TagLine)
+                .Include(b => b.Genres)
+                .FirstOrDefaultAsync(b => b.Id == id);
+        }
     }
 }
