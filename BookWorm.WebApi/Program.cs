@@ -25,11 +25,14 @@ namespace BookWorm.WebAPI
                 });
             builder.Services.AddAutoMapper(typeof(BookWormMappingProfile));
 
-            builder.Services.AddScoped<IAuthorService, AuthorService>();           
-
-           
+            builder.Services.AddScoped<IAuthorService, AuthorService>();   
             builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
-
+            builder.Services.AddScoped<IGenreRepository, GenreRepository>();
+            builder.Services.AddScoped<IGenreService, GenreService>();
+            builder.Services.AddScoped<ILanguageRepository, LanguageRepository>();
+            builder.Services.AddScoped<ILanguageService, LanguageService>();
+            builder.Services.AddScoped<IBookTitleRepository, BookTitleRepository>();
+            builder.Services.AddScoped<IBookTitleService, BookTitleService>();
 
             builder.Services.AddDbContext<BookWormDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
