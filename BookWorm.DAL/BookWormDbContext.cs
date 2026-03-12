@@ -56,10 +56,16 @@ namespace BookWorm.DAL
             modelBuilder.Entity<TagLine>().Property(t => t.Text).IsRequired().HasMaxLength(250);
             modelBuilder.Entity<Genre>().Property(g => g.Name).IsRequired().HasMaxLength(100);
             modelBuilder.Entity<Language>().Property(l => l.Name).IsRequired().HasMaxLength(50);
-
+            modelBuilder.Entity<Language>().HasData(
+                    new Language { Id = 1, Name = "English" },
+                    new Language { Id = 2, Name = "Croatian" },
+                    new Language { Id = 3, Name = "German" },
+                    new Language { Id = 4, Name = "French" },
+                    new Language { Id = 5, Name = "Spanish" },
+                    new Language { Id = 6, Name = "Italian" },
+                    new Language { Id = 7, Name = "Japanese" }
+                );
             
-            modelBuilder.Entity<Author>()
-                .Ignore(a => a.FullName);
         }
     }
 }
