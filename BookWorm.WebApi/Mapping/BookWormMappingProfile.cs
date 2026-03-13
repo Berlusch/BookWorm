@@ -1,9 +1,9 @@
 ﻿
-    using AutoMapper;
-    using BookWorm.Model;
-    using BookWorm.WebApi.DTO;
+using AutoMapper;
+using BookWorm.Model;
+using BookWorm.WebApi.DTO;
 
-    namespace BookWorm.WebAPI.Mapping
+namespace BookWorm.WebAPI.Mapping
 
 { 
     public class BookWormMappingProfile : Profile
@@ -26,6 +26,10 @@
                     .ForMember(dest => dest.BookQuotes, opt => opt.MapFrom(src => src.BookQuotes.Select(q => q.Text).ToList()))
                     .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.Genres.Select(g => g.Name).ToList()));
             CreateMap<BookTitleInsertUpdateDto, BookTitle>();
+          
+            CreateMap<BookQuote, BookQuoteReadDto>()
+            .ForMember(dest => dest.BookTitleName, opt => opt.MapFrom(src => src.BookTitle.Title));
+            CreateMap<BookQuoteInsertUpdateDto, BookQuote>();
         }
     }
 

@@ -33,6 +33,8 @@ namespace BookWorm.WebAPI
             builder.Services.AddScoped<ILanguageService, LanguageService>();
             builder.Services.AddScoped<IBookTitleRepository, BookTitleRepository>();
             builder.Services.AddScoped<IBookTitleService, BookTitleService>();
+            builder.Services.AddScoped<IBookQuoteRepository, BookQuoteRepository>();
+            builder.Services.AddScoped<IBookQuoteService, BookQuoteService>();
 
             builder.Services.AddDbContext<BookWormDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));

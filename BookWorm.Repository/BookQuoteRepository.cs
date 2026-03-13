@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Bookworm.Repository.Common;
+using BookWorm.DAL;
+using BookWorm.Model;
 
-namespace BookWorm.Repository
+namespace Bookworm.Repository
 {
-    internal class BookQuoteRepository
+    public class BookQuoteRepository(BookWormDbContext context) : GenericRepository<BookQuote>(context), IBookQuoteRepository
     {
+
     }
 }

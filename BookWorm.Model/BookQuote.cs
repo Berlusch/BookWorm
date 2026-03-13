@@ -6,7 +6,7 @@ namespace BookWorm.Model
     {
         public string Text { get; set; } = null!;
 
-        // FK and navigation 1:1 to BookTitle
+        // FK and navigation n:1 to BookTitle
         public int BookTitleId { get; set; }        
         public BookTitle BookTitle { get; set; } = null!;  
     }

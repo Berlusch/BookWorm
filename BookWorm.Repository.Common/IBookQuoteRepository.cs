@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookWorm.Model;
+using BookWorm.Repository.Common;
 
-namespace BookWorm.Repository.Common
+namespace Bookworm.Repository.Common
 {
-    internal interface IBookQuoteRepository
+    public interface IBookQuoteRepository : IGenericRepository<BookQuote>
     {
+
     }
 }
