@@ -89,7 +89,7 @@ namespace BookWorm.Service.Tests
 
             // Assert
             result.Items.Should().HaveCount(1);
-            result.TotalCount.Should().Be(2); // ukupno u bazi
+            result.TotalCount.Should().Be(2); 
         }
 
         // -----------------------------------------------------------------------

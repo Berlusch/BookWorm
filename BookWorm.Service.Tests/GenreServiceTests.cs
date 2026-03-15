@@ -1,10 +1,8 @@
 ﻿using Bookworm.Repository.Common;
 using BookWorm.Common;
 using BookWorm.Model;
-using BookWorm.Service;
 using FluentAssertions;
 using MockQueryable;
-using MockQueryable.Moq;
 using Moq;
 using Xunit;
 
@@ -14,8 +12,7 @@ namespace BookWorm.Service.Tests
     {
         private readonly Mock<IGenreRepository> _repositoryMock;
         private readonly GenreService _service;
-
-        // Dijeljeni testni podaci
+        
         private readonly Genre _genreFantasy = new() { Id = 1, Name = "Fantasy", Description = "Fantasy books" };
         private readonly Genre _genreThriller = new() { Id = 2, Name = "Thriller", Description = "Thriller books" };
 
@@ -92,7 +89,7 @@ namespace BookWorm.Service.Tests
 
             // Assert
             result.Items.Should().HaveCount(1);
-            result.TotalCount.Should().Be(2); // ukupno u bazi
+            result.TotalCount.Should().Be(2);
         }
 
         // -----------------------------------------------------------------------

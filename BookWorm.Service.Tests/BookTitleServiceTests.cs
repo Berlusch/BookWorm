@@ -13,8 +13,7 @@ namespace BookWorm.Service.Tests
         private readonly Mock<IBookTitleRepository> _bookTitleRepositoryMock;
         private readonly Mock<IGenreRepository> _genreRepositoryMock;
         private readonly BookTitleService _service;
-
-        // Dijeljeni testni podaci
+        
         private readonly Author _author = new()
         {
             Id = 1,
