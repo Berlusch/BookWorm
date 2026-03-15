@@ -1,10 +1,8 @@
 ﻿using Bookworm.Repository.Common;
 using BookWorm.Common;
 using BookWorm.Model;
-using BookWorm.Service;
 using FluentAssertions;
 using MockQueryable;
-using MockQueryable.Moq;
 using Moq;
 using Xunit;
 
@@ -291,7 +289,7 @@ namespace BookWorm.Service.Tests
                 FirstName = "George",
                 LastName = "Orwell",
                 BirthYear = 1903,
-                DeathYear = null, // brisanje godine smrti
+                DeathYear = null, 
                 Biography = "English novelist.",
                 NationalLiterature = "English"
             };
