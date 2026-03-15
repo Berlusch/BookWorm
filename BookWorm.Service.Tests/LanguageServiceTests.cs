@@ -1,10 +1,8 @@
 ﻿using Bookworm.Repository.Common;
 using BookWorm.Common;
 using BookWorm.Model;
-using BookWorm.Service;
 using FluentAssertions;
 using MockQueryable;
-using MockQueryable.Moq;
 using Moq;
 using Xunit;
 
@@ -14,8 +12,7 @@ namespace BookWorm.Service.Tests
     {
         private readonly Mock<ILanguageRepository> _repositoryMock;
         private readonly LanguageService _service;
-
-        // Dijeljeni testni podaci
+       
         private readonly Language _languageEnglish = new() { Id = 1, Name = "English" };
         private readonly Language _languageCroatian = new() { Id = 2, Name = "Croatian" };
 

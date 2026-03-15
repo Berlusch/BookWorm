@@ -1,10 +1,8 @@
 ﻿using Bookworm.Repository.Common;
 using BookWorm.Common;
 using BookWorm.Model;
-using BookWorm.Service;
 using FluentAssertions;
 using MockQueryable;
-using MockQueryable.Moq;
 using Moq;
 using Xunit;
 
@@ -53,7 +51,7 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre> { _genreFantasy, _genreAdventure }
+                Genres = [_genreFantasy, _genreAdventure]
             };
 
             _bookTitleTwo = new BookTitle
@@ -65,11 +63,11 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre> { _genreFantasy }
+                Genres = [_genreFantasy]
             };
         }
 
-        // Helper - postavlja GetQuery mock na BookTitleRepository
+        // Helper - set GetQuery mock on BookTitleRepository
         private void SetupBookTitleGetQuery(List<BookTitle> bookTitles)
         {
             _bookTitleRepositoryMock
@@ -80,7 +78,7 @@ namespace BookWorm.Service.Tests
                 .Returns(bookTitles.BuildMock());
         }
 
-        // Helper - postavlja GetQuery mock na GenreRepository
+        // Helper - set GetQuery mock on GenreRepository
         private void SetupGenreGetQuery(List<Genre> genres)
         {
             _genreRepositoryMock
@@ -103,7 +101,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupBookTitleGetQuery(new List<BookTitle> { _bookTitleOne, _bookTitleTwo });
+            SetupBookTitleGetQuery([_bookTitleOne, _bookTitleTwo]);
 
             // Act
             var result = await _service.GetBookTitlesAsync(paging, sorting, filter);
@@ -123,7 +121,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupBookTitleGetQuery(new List<BookTitle>());
+            SetupBookTitleGetQuery([]);
 
             // Act
             var result = await _service.GetBookTitlesAsync(paging, sorting, filter);
@@ -141,7 +139,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupBookTitleGetQuery(new List<BookTitle> { _bookTitleOne, _bookTitleTwo });
+            SetupBookTitleGetQuery([_bookTitleOne, _bookTitleTwo]);
 
             // Act
             var result = await _service.GetBookTitlesAsync(paging, sorting, filter);
@@ -159,7 +157,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupBookTitleGetQuery(new List<BookTitle> { _bookTitleOne });
+            SetupBookTitleGetQuery([_bookTitleOne]);
 
             // Act
             var result = await _service.GetBookTitlesAsync(paging, sorting, filter);
@@ -179,7 +177,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupBookTitleGetQuery(new List<BookTitle> { _bookTitleOne });
+            SetupBookTitleGetQuery([_bookTitleOne]);
 
             // Act
             var result = await _service.GetBookTitlesAsync(paging, sorting, filter);
@@ -270,10 +268,10 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre> { _genreFantasy }
+                Genres = [_genreFantasy]
             };
 
-            SetupGenreGetQuery(new List<Genre> { _genreFantasy, _genreAdventure });
+            SetupGenreGetQuery([_genreFantasy, _genreAdventure]);
 
             _bookTitleRepositoryMock
                 .Setup(r => r.AddAsync(newBookTitle))
@@ -284,7 +282,7 @@ namespace BookWorm.Service.Tests
                 .ReturnsAsync(savedBookTitle);
 
             // Act
-            var result = await _service.AddBookTitleAsync(newBookTitle, new List<int> { 1 });
+            var result = await _service.AddBookTitleAsync(newBookTitle, [1]);
 
             // Assert
             result.Should().NotBeNull();
@@ -314,10 +312,10 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre> { _genreFantasy, _genreAdventure }
+                Genres = [_genreFantasy, _genreAdventure]
             };
 
-            SetupGenreGetQuery(new List<Genre> { _genreFantasy, _genreAdventure });
+            SetupGenreGetQuery([_genreFantasy, _genreAdventure]);
 
             _bookTitleRepositoryMock
                 .Setup(r => r.AddAsync(newBookTitle))
@@ -328,7 +326,7 @@ namespace BookWorm.Service.Tests
                 .ReturnsAsync(savedBookTitle);
 
             // Act
-            var result = await _service.AddBookTitleAsync(newBookTitle, new List<int> { 1, 2 });
+            var result = await _service.AddBookTitleAsync(newBookTitle, [1, 2]);
 
             // Assert
             result.Genres.Should().HaveCount(2);
@@ -354,10 +352,10 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre>()
+                Genres = []
             };
 
-            SetupGenreGetQuery(new List<Genre> { _genreFantasy, _genreAdventure });
+            SetupGenreGetQuery([_genreFantasy, _genreAdventure]);
 
             _bookTitleRepositoryMock
                 .Setup(r => r.AddAsync(newBookTitle))
@@ -368,7 +366,7 @@ namespace BookWorm.Service.Tests
                 .ReturnsAsync(savedBookTitle);
 
             // Act
-            var result = await _service.AddBookTitleAsync(newBookTitle, new List<int>());
+            var result = await _service.AddBookTitleAsync(newBookTitle, []);
 
             // Assert
             result.Genres.Should().BeEmpty();
@@ -398,14 +396,14 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre> { _genreFantasy }
+                Genres = [_genreFantasy]
             };
 
             _bookTitleRepositoryMock
                 .Setup(r => r.GetByIdWithDetailsAsync(1))
                 .ReturnsAsync(_bookTitleOne);
 
-            SetupGenreGetQuery(new List<Genre> { _genreFantasy, _genreAdventure });
+            SetupGenreGetQuery([_genreFantasy, _genreAdventure]);
 
             _bookTitleRepositoryMock
                 .Setup(r => r.UpdateAsync(It.IsAny<BookTitle>()))
@@ -417,7 +415,7 @@ namespace BookWorm.Service.Tests
                 .ReturnsAsync(updatedBookTitle);
 
             // Act
-            var result = await _service.UpdateBookTitleAsync(1, updateData, new List<int> { 1 });
+            var result = await _service.UpdateBookTitleAsync(1, updateData, [1]);
 
             // Assert
             result.Should().NotBeNull();
@@ -447,10 +445,10 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre> { _genreAdventure } // samo Adventure ostaje
+                Genres = [_genreAdventure]
             };
 
-            SetupGenreGetQuery(new List<Genre> { _genreFantasy, _genreAdventure });
+            SetupGenreGetQuery([_genreFantasy, _genreAdventure]);
 
             _bookTitleRepositoryMock
                 .Setup(r => r.UpdateAsync(It.IsAny<BookTitle>()))
@@ -462,7 +460,7 @@ namespace BookWorm.Service.Tests
                 .ReturnsAsync(updatedBookTitle);
 
             // Act
-            var result = await _service.UpdateBookTitleAsync(1, updateData, new List<int> { 2 });
+            var result = await _service.UpdateBookTitleAsync(1, updateData, [2]);
 
             // Assert
             result.Genres.Should().HaveCount(1);
@@ -489,10 +487,10 @@ namespace BookWorm.Service.Tests
                 Author = _author,
                 LanguageId = 1,
                 Language = _language,
-                Genres = new List<Genre> { _genreFantasy }
+                Genres = [_genreFantasy]
             };
 
-            SetupGenreGetQuery(new List<Genre> { _genreFantasy });
+            SetupGenreGetQuery([_genreFantasy]);
 
             _bookTitleRepositoryMock
                 .Setup(r => r.UpdateAsync(It.IsAny<BookTitle>()))
@@ -504,7 +502,7 @@ namespace BookWorm.Service.Tests
                 .ReturnsAsync(updatedBookTitle);
 
             // Act
-            var result = await _service.UpdateBookTitleAsync(1, updateData, new List<int> { 1 });
+            var result = await _service.UpdateBookTitleAsync(1, updateData, [1]);
 
             // Assert
             result.Subtitle.Should().BeNull();
@@ -524,7 +522,7 @@ namespace BookWorm.Service.Tests
                 Title = "X",
                 AuthorId = 1,
                 LanguageId = 1
-            }, new List<int> { 1 });
+            }, [1]);
 
             // Assert
             await act.Should().ThrowAsync<KeyNotFoundException>()
@@ -547,7 +545,7 @@ namespace BookWorm.Service.Tests
                     Title = "X",
                     AuthorId = 1,
                     LanguageId = 1
-                }, new List<int> { 1 });
+                }, [1]);
             }
             catch (KeyNotFoundException) { }
 

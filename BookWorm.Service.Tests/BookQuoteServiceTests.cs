@@ -1,10 +1,8 @@
 ﻿using Bookworm.Repository.Common;
 using BookWorm.Common;
 using BookWorm.Model;
-using BookWorm.Service;
 using FluentAssertions;
 using MockQueryable;
-using MockQueryable.Moq;
 using Moq;
 using Xunit;
 
@@ -15,7 +13,6 @@ namespace BookWorm.Service.Tests
         private readonly Mock<IBookQuoteRepository> _repositoryMock;
         private readonly BookQuoteService _service;
 
-        // Dijeljeni testni podaci
         private readonly BookTitle _bookTitle = new()
         {
             Id = 1,
@@ -47,7 +44,7 @@ namespace BookWorm.Service.Tests
             };
         }
 
-        // Helper - postavlja GetQuery mock s listom citata
+        // Helper - GetQuery mock with quotes
         private void SetupGetQuery(List<BookQuote> quotes)
         {
             _repositoryMock
@@ -70,7 +67,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupGetQuery(new List<BookQuote> { _quoteOne, _quoteTwo });
+            SetupGetQuery([_quoteOne, _quoteTwo]);
 
             // Act
             var result = await _service.GetBookQuotesAsync(paging, sorting, filter);
@@ -90,7 +87,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupGetQuery(new List<BookQuote>());
+            SetupGetQuery([]);
 
             // Act
             var result = await _service.GetBookQuotesAsync(paging, sorting, filter);
@@ -108,7 +105,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupGetQuery(new List<BookQuote> { _quoteOne, _quoteTwo });
+            SetupGetQuery([_quoteOne, _quoteTwo]);
 
             // Act
             var result = await _service.GetBookQuotesAsync(paging, sorting, filter);
@@ -126,7 +123,7 @@ namespace BookWorm.Service.Tests
             var sorting = new SortingParameters();
             var filter = new FilterParameters();
 
-            SetupGetQuery(new List<BookQuote> { _quoteOne });
+            SetupGetQuery([_quoteOne]);
 
             // Act
             var result = await _service.GetBookQuotesAsync(paging, sorting, filter);
@@ -144,7 +141,7 @@ namespace BookWorm.Service.Tests
         public async Task GetBookQuoteByIdAsync_ExistingId_ReturnsBookQuote()
         {
             // Arrange
-            SetupGetQuery(new List<BookQuote> { _quoteOne, _quoteTwo });
+            SetupGetQuery([_quoteOne, _quoteTwo]);
 
             // Act
             var result = await _service.GetBookQuoteByIdAsync(1);
@@ -160,7 +157,7 @@ namespace BookWorm.Service.Tests
         public async Task GetBookQuoteByIdAsync_NonExistingId_ThrowsKeyNotFoundException()
         {
             // Arrange
-            SetupGetQuery(new List<BookQuote> { _quoteOne, _quoteTwo });
+            SetupGetQuery([_quoteOne, _quoteTwo]);
 
             // Act
             var act = async () => await _service.GetBookQuoteByIdAsync(99);
@@ -195,7 +192,7 @@ namespace BookWorm.Service.Tests
                 .Setup(r => r.AddAsync(newQuote))
                 .ReturnsAsync(savedQuote);
 
-            SetupGetQuery(new List<BookQuote> { _quoteOne, _quoteTwo, savedQuote });
+            SetupGetQuery([_quoteOne, _quoteTwo, savedQuote]);
 
             // Act
             var result = await _service.AddBookQuoteAsync(newQuote);
@@ -238,7 +235,7 @@ namespace BookWorm.Service.Tests
                 .Setup(r => r.UpdateAsync(It.IsAny<BookQuote>()))
                 .ReturnsAsync(updatedQuote);
 
-            SetupGetQuery(new List<BookQuote> { updatedQuote, _quoteTwo });
+            SetupGetQuery([updatedQuote, _quoteTwo]);
 
             // Act
             var result = await _service.UpdateBookQuoteAsync(1, updateData);
