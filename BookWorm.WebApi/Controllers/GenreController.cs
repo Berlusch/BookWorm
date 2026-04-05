@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BookWorm.WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class GenreController : ControllerBase
     {
         private readonly IGenreService _genreService;
