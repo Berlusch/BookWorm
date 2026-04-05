@@ -51,6 +51,13 @@ namespace BookWorm.Service
         }
         public async Task<bool> DeleteAuthorAsync(int id)
         {
+            var author = await _authorRepository.GetByIdWithBooksAsync(id);
+            if (author == null)
+                return false;
+
+            if (author.BookTitles.Any())
+                throw new InvalidOperationException("Cannot delete author with associated book titles.");
+
             return await _authorRepository.DeleteAsync(id);
         }
     }

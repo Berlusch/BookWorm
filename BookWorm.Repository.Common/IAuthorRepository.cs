@@ -5,6 +5,6 @@ namespace Bookworm.Repository.Common
 {
     public interface IAuthorRepository : IGenericRepository<Author>
     {
-        
+        Task<Author?> GetByIdWithBooksAsync(int id);
     }
 }

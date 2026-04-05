@@ -12,6 +12,11 @@ namespace Bookworm.Repository
             return await _dbSet
                 .FirstOrDefaultAsync(a => a.FullName == fullName);
         }
-
+        public async Task<Author?> GetByIdWithBooksAsync(int id)
+        {
+            return await _dbSet
+                .Include(a => a.BookTitles)
+                .FirstOrDefaultAsync(a => a.Id == id);
+        }
     }
 }
