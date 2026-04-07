@@ -55,7 +55,7 @@ class AuthorStore {
             });
 
             runInAction(() => {
-            this.genres = response.items ?? [];
+            this.authors = response.items ?? [];
             this.hasNextPage = this.currentPage < (response.totalPages ?? 1);
             this.loading = false;
         });

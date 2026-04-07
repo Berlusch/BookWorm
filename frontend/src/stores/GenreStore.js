@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import GenreService from "../common/Services/GenreService";
 
 class GenreStore {
+    allGenres = [];
     genres = [];
     searchTerm = "";
     currentPage = 1;
@@ -41,6 +42,24 @@ class GenreStore {
         }
         this.fetchGenres();
     }
+
+    async fetchAllGenres() {
+    try {
+        const response = await GenreService.getGenresPFS({
+            pageNumber: 1,
+            pageSize: 9999,
+            orderBy: "name",
+            descending: false,
+            filterProperty: "",
+            filter: ""
+        });
+        runInAction(() => {
+            this.allGenres = response.items ?? [];
+        });
+    } catch (error) {
+        console.error("Error fetching all genres:", error);
+    }
+}
 
     async fetchGenres() {
         this.loading = true;

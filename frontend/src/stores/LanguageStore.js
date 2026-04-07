@@ -2,6 +2,7 @@ import { makeAutoObservable, runInAction } from "mobx";
 import LanguageService from "../common/Services/LanguageService";
 
 class LanguageStore {
+    allLanguages = [];
     languages = [];
     currentPage = 1;
     pageSize = 5;
@@ -18,6 +19,24 @@ class LanguageStore {
         this.fetchLanguages();
     }
 
+    async fetchAllLanguages() {
+    try {
+        const response = await LanguageService.getLanguagesPFS({
+            pageNumber: 1,
+            pageSize: 9999,
+            orderBy: "name",
+            descending: false,
+            filterProperty: "",
+            filter: ""
+        });
+        runInAction(() => {
+            this.allLanguages = response.items ?? [];
+        });
+    } catch (error) {
+        console.error("Error fetching all languages:", error);
+    }
+}
+
     async fetchLanguages() {
         this.loading = true;
         try {
@@ -27,7 +46,7 @@ class LanguageStore {
             });
 
             runInAction(() => {
-            this.genres = response.items ?? [];
+            this.languages = response.items ?? [];
             this.hasNextPage = this.currentPage < (response.totalPages ?? 1);
             this.loading = false;
         });
