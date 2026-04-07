@@ -21,10 +21,13 @@ namespace BookWorm.WebAPI.Mapping
             CreateMap<GenreInsertUpdateDto, Genre>();
 
             CreateMap<BookTitle, BookTitleReadDto>()
-                    .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.FullName))
-                    .ForMember(dest => dest.LanguageName, opt => opt.MapFrom(src => src.Language.Name))
-                    .ForMember(dest => dest.BookQuotes, opt => opt.MapFrom(src => src.BookQuotes.Select(q => q.Text).ToList()))
-                    .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.Genres.Select(g => g.Name).ToList()));
+                .ForMember(dest => dest.AuthorName, opt => opt.MapFrom(src => src.Author.FullName))
+                .ForMember(dest => dest.AuthorId, opt => opt.MapFrom(src => src.AuthorId))
+                .ForMember(dest => dest.LanguageName, opt => opt.MapFrom(src => src.Language.Name))
+                .ForMember(dest => dest.LanguageId, opt => opt.MapFrom(src => src.LanguageId))
+                .ForMember(dest => dest.BookQuotes, opt => opt.MapFrom(src => src.BookQuotes.Select(q => q.Text).ToList()))
+                .ForMember(dest => dest.Genres, opt => opt.MapFrom(src => src.Genres.Select(g => g.Name).ToList()))
+                .ForMember(dest => dest.GenreIds, opt => opt.MapFrom(src => src.Genres.Select(g => g.Id).ToList()));
             CreateMap<BookTitleInsertUpdateDto, BookTitle>();
           
             CreateMap<BookQuote, BookQuoteReadDto>()
